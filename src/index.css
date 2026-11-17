@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+
+@theme { --font-kanit: 'Kanit', sans-serif; }
+
+:root {
+  font-family: 'Kanit', sans-serif;
+  color-scheme: light;
+  color: #292d3d;
+  background: #f4f4f8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+body { min-width: 320px; min-height: 100svh; margin: 0; padding: 24px 12px; line-height: 1.6; }
+#root { display: flex; width: 100%; justify-content: center; }
+button, input, select { font: inherit; -webkit-tap-highlight-color: transparent; }
+:where(button, input, select):focus-visible { outline: 2px solid #6448e9; outline-offset: 3px; }
+
+.calculator-page {
+  width: min(100%, 480px);
+  padding: 28px;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 0 0 1px #292d3d04, 0 4px 8px #292d3d03, 0 20px 50px -16px #292d3d22;
+}
+.calculator-header { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.calculator-title { margin: 0; font-size: 22px; font-weight: 600; line-height: 1.3; letter-spacing: -0.4px; }
+.calculator-subtitle { margin-top: 3px; color: #68758a; font-size: 13px; }
+.calculator-art { display: grid; height: 72px; margin-top: 20px; place-items: center; }
+.calculator-art img { display: block; width: 72px; height: 72px; object-fit: contain; }
+.calculator-form { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+.form-field { display: flex; min-width: 0; flex-direction: column; gap: 5px; }
+.form-field > label { color: #525e74; font-size: 12px; font-weight: 500; line-height: 1.4; }
+.field-rate { color: #738096; font: inherit; font-weight: 400; }
+.field-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  padding: 7px 12px;
+  border: 1px solid #c5cbd8;
+  border-radius: 10px;
+  background: #fdfdff;
+  color: #292d3d;
+  font-size: 16px;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+}
+.field-input:focus,
+.field-input:focus-visible {
+  outline: none;
+  border-color: #8c7ba8;
+  background: #fff;
+  box-shadow: 0 0 0 2px #8c7ba80f;
+}
+.field-input:disabled { border-color: #e2e5ed; background: #f3f4f8; color: #8490a1; cursor: not-allowed; opacity: 1; }
+.field-input[aria-invalid='true'] { border-color: #be2343; }
+select.field-input { cursor: pointer; }
+.field-error { color: #ae2442; font-size: 12px; line-height: 1.6; }
+.field-hint { color: #68758a; font-size: 12px; line-height: 1.6; }
+
+.drink-field { min-width: 0; margin: 0; padding: 5px 14px 12px; border: 1px solid #e3e5ee; border-radius: 12px; background: #fdfdff; }
+.drink-field > legend { padding-inline: 5px; color: #525e74; font-size: 12px; font-weight: 500; }
+.drink-options { display: flex; flex-direction: column; gap: 2px; }
+.drink-option { display: flex; min-height: 28px; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
+.drink-option input { flex-shrink: 0; width: 15px; height: 15px; margin: 0; accent-color: #2785ff; }
+.drink-option:has(input:checked) { color: #30364c; font-weight: 500; }
+.bottle-fields { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+
+.form-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 2px; }
+.button { display: inline-flex; min-width: 0; min-height: 44px; align-items: center; justify-content: center; padding: 9px 14px; border: 1px solid transparent; border-radius: 10px; color: #fff; font-size: 14px; font-weight: 500; cursor: pointer; transition: background-color 150ms ease-out, box-shadow 150ms ease-out; }
+.button-primary { background: #6040ee; box-shadow: 0 2px 3px #4327c21a, inset 0 1px 0 #ffffff20; }
+.button-secondary { background: #f12e48; box-shadow: 0 2px 3px #a91c3010, inset 0 1px 0 #ffffff20; }
+.result-panel { display: flex; min-height: 56px; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px; margin-top: 18px; padding: 12px; border: 1px solid #e8e4fc; border-radius: 10px; background: #f1effd; text-align: center; }
+.result-label { font-size: 13px; }
+.result-value { display: inline-flex; min-width: 0; align-items: baseline; gap: 4px; }
+.result-number { min-width: 0; color: #6040ee; font-size: 20px; font-weight: 600; line-height: 1.3; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.result-unit { font-size: 13px; }
+
+@media (hover: hover) {
+  .button-primary:hover { background: #5231df; box-shadow: 0 4px 10px #6040ee26; }
+  .button-secondary:hover { background: #df203a; box-shadow: 0 4px 10px #f12e4820; }
+  .field-input:not(:disabled):not(:focus):hover { border-color: #9a9fb2; }
+}
+@media (max-width: 480px) {
+  body { padding: 10px 12px; }
+  .calculator-page { padding: 24px; border-radius: 18px; }
+}
+@media (max-width: 360px) {
+  .calculator-page { padding-inline: 20px; }
+  .calculator-title { font-size: 21px; }
+  .drink-option { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
+@media (forced-colors: active) {
+  .calculator-page, .drink-field, .result-panel, .button, .select-menu { border: 1px solid CanvasText; }
+}
+
+.discount-select { position: relative; }
+.select-trigger { display: flex; align-items: center; gap: 10px; text-align: start; cursor: pointer; }
+.select-trigger span { font-size: 14px; }
+.select-tag { flex-shrink: 0; color: #8b80ae; }
+.select-chevron { flex-shrink: 0; margin-inline-start: auto; color: #7d7890; }
+.select-trigger.is-open { border-color: #8c7ba8; background: #fff; box-shadow: 0 0 0 2px #8c7ba80f; }
+.select-trigger.is-open .select-chevron { transform: rotate(180deg); }
+.select-menu { position: absolute; z-index: 10; top: calc(100% + 7px); inset-inline: 0; max-height: 190px; padding: 5px; overflow-y: auto; overscroll-behavior: contain; border: 1px solid #e1deed; border-radius: 12px; background: #fff; box-shadow: 0 4px 8px #292d3d06, 0 14px 32px #292d3d16; }
+.select-menu.is-above { top: auto; bottom: calc(100% + 7px); }
+.select-option { display: flex; min-height: 42px; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 12px; border-radius: 7px; color: #52586d; font-size: 13px; cursor: pointer; }
+.select-option.is-active { background: #f3f1fc; }
+.select-option[aria-selected='true'] { color: #6040ee; font-weight: 500; }
+@media (prefers-reduced-motion: no-preference) {
+  .select-chevron { transition: transform 150ms ease-out; }
+  .button { transition: background-color 150ms ease-out, box-shadow 150ms ease-out, transform 150ms ease-out; }
+  .button:not(:disabled):active { transform: scale(0.96); }
+}
